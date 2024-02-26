@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+
+  isolutionz-auth-service:
+    build: .  # Build from the Dockerfile in the current directory
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./authService/authHandler/src:/app/authService/authHandler/src:rw  # Mount your src directory for development changes
+      - ./authService/authHandler:/app/authService/authHandler:rw
+      - ./authService:/app/authService:rw
+      - ~/.aws:/root/.aws:ro 
+    environment:
+      - AWS_REGION=eu-west-1
+      - LOG_LEVEL=http
+      - LOGTAIL_TOKEN=JVhT3S2XrAZMEBMVok3VeuBf
+      - USERPOOL_ID=eu-west-1_0MNmChSrY
+      - CLIENT_ID=79cbov4piprb3rflckqtnltb6p
+      - NODE_ENV=dev
+    networks:
+      - isolutionz-network
+
+networks:
+  isolutionz-network:  # Define an internal network (optional)
+    # Add other services to this network as needed
