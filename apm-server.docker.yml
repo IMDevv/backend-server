@@ -1,0 +1,13 @@
+apm-server:
+  host: "0.0.0.0:8200"
+
+output.elasticsearch:
+  hosts: ["https://localhost:9200"]
+  username: "elastic"
+  password: "S+d8ojt9*E0E=ZtJqx+J"
+  protocol: "http"
+  index: "apm-%{[observer.version]}-%{+yyyy.MM.dd}"
+  ssl.verification_mode: none
+
+setup.kibana:
+  host: "kibana:5601"
